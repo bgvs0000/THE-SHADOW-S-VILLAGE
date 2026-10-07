@@ -1,0 +1,17 @@
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+@keyframes fadeUp{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+@keyframes panelIn{from{opacity:0;transform:translateY(14px) scale(.985)}to{opacity:1;transform:none}}
+@keyframes dlgIn{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:none}}
+@keyframes toastIn{from{opacity:0;transform:translateX(20px)}to{opacity:1;transform:none}}
+@keyframes toastOut{to{opacity:0;transform:translateX(10px)}}
+@keyframes spin{to{transform:rotate(360deg)}}
+@keyframes pulseGold{0%,100%{filter:brightness(1)}50%{filter:brightness(1.6)}}
+@keyframes bump{40%{transform:scale(1.15);color:var(--gold)}}
+@keyframes objDone{0%{background:rgba(201,162,39,.3)}100%{background:transparent}}
+@keyframes bannerShow{0%{opacity:0;transform:translateY(10px);letter-spacing:.3em}15%{opacity:1;transform:none}75%{opacity:1}100%{opacity:0}}
+@keyframes titleCard{0%{opacity:0;transform:scale(1.04)}14%{opacity:1;transform:none}80%{opacity:1}100%{opacity:0}}
+@keyframes brush{to{width:min(520px,80vw)}}
+@keyframes lineGrow{to{width:min(420px,70vw)}}
+@keyframes nextBlink{50%{opacity:.2}}
+@keyframes talkBob{40%{transform:translateY(-3px)}}
+@keyframes shake{20%{transform:translateX(-10px)}40%{transform:translateX(8px)}60%{transform:translateX(-6px)}80%{transform:translateX(4px)}}

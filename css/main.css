@@ -1,0 +1,23 @@
+/* Layout: full-bleed canvas world with layered HTML overlays (HUD, dialogue, cinematic, panels, menu). */
+:root{
+  --black:#0A0A0A; --dark:#151515; --grey:#242424; --line:#3a3a3a; --light:#BDBDBD; --white:#F5F5F5;
+  --red:#8B1E1E; --red-hi:#b42a2a; --gold:#C9A227; --gold-dim:#8a7020;
+  --glass:rgba(16,16,16,.72); --glass-strong:rgba(12,12,12,.9);
+  --f-display:"Shippori Mincho","Hiragino Mincho ProN","Yu Mincho","Noto Serif JP",Georgia,serif;
+  --f-ui:"Zen Kaku Gothic New","Hiragino Sans","Yu Gothic","Noto Sans JP",system-ui,-apple-system,"Segoe UI",sans-serif;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+html,body{margin:0;height:100%;background:var(--black);color:var(--white);font-family:var(--f-ui);overflow:hidden;
+  -webkit-user-select:none;user-select:none;-webkit-tap-highlight-color:transparent;touch-action:none}
+#app{position:fixed;inset:0;overflow:hidden}
+#game{position:absolute;inset:0;width:100%;height:100%;display:block;background:#050505}
+.hidden{display:none!important}
+button{font-family:inherit;color:inherit;cursor:pointer}
+button:focus-visible{outline:1px solid var(--gold);outline-offset:2px}
+kbd{font-family:var(--f-ui);font-size:10px;padding:1px 5px;border:1px solid #555;border-bottom-width:2px;border-radius:3px;color:var(--white);background:#1b1b1b}
+#fade{position:absolute;inset:0;background:#000;opacity:0;pointer-events:none;z-index:60;transition:opacity .35s ease}
+#flash{position:absolute;inset:0;background:#fff;opacity:0;pointer-events:none;z-index:45}
+.icon-btn{background:var(--glass);border:1px solid var(--line);color:var(--light);width:38px;height:38px;border-radius:50%;font-size:18px}
+::-webkit-scrollbar{width:6px}::-webkit-scrollbar-thumb{background:#333;border-radius:3px}
+@media (prefers-reduced-motion:reduce){*{animation-duration:.01ms!important;transition-duration:.01ms!important}}

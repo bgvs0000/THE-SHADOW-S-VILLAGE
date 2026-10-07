@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, user-scalable=no">
+<title>Shadow of the Village</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@500;700;800&family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap">
+<link rel="stylesheet" href="css/main.css">
+<link rel="stylesheet" href="css/menu.css">
+<link rel="stylesheet" href="css/game.css">
+<link rel="stylesheet" href="css/ui.css">
+<link rel="stylesheet" href="css/inventory.css">
+<link rel="stylesheet" href="css/shop.css">
+<link rel="stylesheet" href="css/dialogue.css">
+<link rel="stylesheet" href="css/map.css">
+<link rel="stylesheet" href="css/animations.css">
+</head>
+<body>
+<div id="app">
+  <!-- ============ GAME WORLD ============ -->
+  <canvas id="game"></canvas>
+
+  <!-- ============ HUD ============ -->
+  <div id="hud" class="hidden">
+    <div class="hud-tl">
+      <div class="bar-row"><span class="bar-label">HP</span><div class="bar hp"><i id="hpFill"></i><b id="hpLag"></b></div><span class="bar-num" id="hpNum">100</span></div>
+      <div class="bar-row"><span class="bar-label">ST</span><div class="bar st"><i id="stFill"></i></div></div>
+      <div class="bar-row"><span class="bar-label">決</span><div class="bar rs"><i id="rsFill"></i></div><span class="bar-hint" id="rsHint">Q · SHADOW STRIKE</span></div>
+    </div>
+    <div class="hud-tr">
+      <div class="ryo"><span class="ryo-coin"></span><span id="ryoNum">0</span><small>RYO</small></div>
+      <div class="hud-place"><span id="hudArea">Kurohana Village</span><span class="sep">·</span><span id="hudTime">Sunset</span></div>
+    </div>
+    <div class="hud-bl" id="missionHud">
+      <div class="mh-label">MISSION <span id="mhNum">01</span></div>
+      <div class="mh-title" id="mhTitle">Ashes of Kurohana</div>
+      <ul class="mh-obj" id="mhObj"></ul>
+    </div>
+    <div class="hud-br" id="controlsHud">
+      <div><kbd>WASD</kbd> move</div><div><kbd>LMB</kbd> attack · hold heavy</div><div><kbd>RMB</kbd> block</div>
+      <div><kbd>SPACE</kbd> dodge</div><div><kbd>E</kbd> interact</div><div><kbd>Q</kbd> ability</div>
+      <div><kbd>I</kbd> inventory · <kbd>M</kbd> map · <kbd>ESC</kbd> menu</div>
+    </div>
+    <div class="hud-slots" id="quickSlots"></div>
+    <div id="toasts"></div>
+    <div id="autosave"><span class="spin"></span>AUTOSAVED</div>
+    <div id="areaBanner"><div class="ab-jp" id="abJp"></div><div class="ab-name" id="abName"></div><div class="ab-sub" id="abSub"></div></div>
+    <button id="pauseBtn" class="icon-btn" aria-label="Menu">≡</button>
+  </div>
+
+  <!-- ============ TOUCH CONTROLS ============ -->
+  <div id="touch" class="hidden">
+    <div id="stick"><div id="stickKnob"></div></div>
+    <div id="tbtns">
+      <button data-act="attack" class="tb big">斬</button>
+      <button data-act="block" class="tb">守</button>
+      <button data-act="dodge" class="tb">避</button>
+      <button data-act="interact" class="tb">E</button>
+      <button data-act="ability" class="tb gold">Q</button>
+      <button data-act="item1" class="tb sm">1</button>
+      <button data-act="item2" class="tb sm">2</button>
+      <button data-act="item3" class="tb sm">3</button>
+    </div>
+  </div>
+
+  <!-- ============ DIALOGUE ============ -->
+  <div id="dialogue" class="hidden">
+    <div class="dlg-box">
+      <canvas id="dlgPortrait" width="120" height="120"></canvas>
+      <div class="dlg-body">
+        <div class="dlg-head"><span id="dlgName"></span><span id="dlgRole"></span></div>
+        <div id="dlgText"></div>
+        <div id="dlgChoices"></div>
+        <div class="dlg-next" id="dlgNext">▼</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ CINEMATIC LAYER ============ -->
+  <div id="cine" class="hidden">
+    <div class="lb top"></div><div class="lb bot"></div>
+    <div id="cineCaption"><div class="cc-big"></div><div class="cc-small"></div></div>
+    <div id="cineSub"><div class="cs-who"></div><div class="cs-text"></div></div>
+    <div id="cineTitle"><div class="ct-num"></div><div class="ct-jp"></div><div class="ct-name"></div><div class="ct-brush"></div></div>
+    <button id="cineSkip">HOLD ESC / TAP TO SKIP</button>
+  </div>
+  <div id="flash"></div>
+  <div id="fade"></div>
+
+  <!-- ============ PANELS (pause, inventory, shop, map, missions, settings, puzzle) ============ -->
+  <div id="panels"></div>
+
+  <!-- ============ MAIN MENU ============ -->
+  <div id="menu">
+    <canvas id="menuCanvas"></canvas>
+    <div class="menu-inner">
+      <div class="menu-title">
+        <div class="mt-jp">村の影</div>
+        <h1>SHADOW <span>OF THE</span> VILLAGE</h1>
+        <div class="mt-sub">A Japanese Revenge Adventure</div>
+      </div>
+      <nav class="menu-nav" id="menuNav">
+        <button data-m="new">NEW JOURNEY</button>
+        <button data-m="continue" id="btnContinue">CONTINUE</button>
+        <button data-m="load">LOAD GAME</button>
+        <button data-m="settings">SETTINGS</button>
+        <button data-m="credits">CREDITS</button>
+      </nav>
+      <div class="menu-foot">Click anywhere to enable sound · v0.4 vertical slice</div>
+    </div>
+  </div>
+</div>
+
+<!-- Core + systems. Plain scripts sharing the global SV namespace so the game runs straight from file:// -->
+<script src="js/core.js"></script>
+<script src="js/data.js"></script>
+<script src="js/audio.js"></script>
+<script src="js/save.js"></script>
+<script src="js/input.js"></script>
+<script src="js/sprites.js"></script>
+<script src="js/world.js"></script>
+<script src="js/areas.js"></script>
+<script src="js/collectibles.js"></script>
+<script src="js/inventory.js"></script>
+<script src="js/combat.js"></script>
+<script src="js/player.js"></script>
+<script src="js/enemies.js"></script>
+<script src="js/dialogue.js"></script>
+<script src="js/npc.js"></script>
+<script src="js/missions.js"></script>
+<script src="js/puzzles.js"></script>
+<script src="js/story.js"></script>
+<script src="js/shop.js"></script>
+<script src="js/map.js"></script>
+<script src="js/ui.js"></script>
+<script src="js/game.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>

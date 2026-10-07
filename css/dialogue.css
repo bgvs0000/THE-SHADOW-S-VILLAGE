@@ -1,0 +1,38 @@
+#dialogue{position:absolute;left:0;right:0;bottom:calc(22px + env(safe-area-inset-bottom,0px));z-index:40;display:flex;justify-content:center;padding:0 16px;pointer-events:auto}
+.dlg-box{width:min(860px,100%);display:flex;gap:18px;background:linear-gradient(180deg,rgba(14,14,14,.94),rgba(8,8,8,.97));border:1px solid #2c2c2c;border-top:1px solid var(--gold-dim);padding:18px 22px;animation:dlgIn .3s ease;position:relative}
+#dlgPortrait{width:104px;height:104px;flex:none;border:1px solid #333;background:radial-gradient(circle at 50% 30%,#2a2420,#0b0b0b)}
+#dlgPortrait.talk{animation:talkBob .35s ease}
+.dlg-body{flex:1;min-width:0;display:flex;flex-direction:column;gap:8px}
+.dlg-head{display:flex;align-items:baseline;gap:12px}
+#dlgName{font-family:var(--f-display);font-size:18px;font-weight:700;letter-spacing:.08em}
+#dlgRole{font-size:10px;letter-spacing:.24em;color:var(--gold);text-transform:uppercase}
+#dlgText{font-size:15px;line-height:1.7;color:#e6e6e6;min-height:52px;font-family:var(--f-display)}
+#dlgChoices{display:flex;flex-wrap:wrap;gap:8px}
+#dlgChoices button{background:#151515;border:1px solid #3a3a3a;padding:8px 14px;font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--light);transition:all .15s;animation:fadeUp .3s ease both}
+#dlgChoices button:hover{border-color:var(--gold);color:var(--white)}
+#dlgChoices button .k{color:var(--gold);margin-right:6px}
+#dlgChoices button.leave{border-color:#2a2a2a;color:#888}
+.dlg-next{position:absolute;right:18px;bottom:10px;color:var(--gold);font-size:11px;animation:nextBlink 1s infinite}
+@media (max-width:600px){#dlgPortrait{width:64px;height:64px}#dlgText{font-size:13.5px}.dlg-box{padding:14px}}
+/* Cinematic */
+#cine{position:absolute;inset:0;z-index:42;pointer-events:none}
+.lb{position:absolute;left:0;right:0;height:0;background:#000;transition:height .8s cubic-bezier(.7,0,.3,1)}
+.lb.top{top:0}.lb.bot{bottom:0}
+#cine.on .lb{height:11vh}
+#cineCaption{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;opacity:0;transition:opacity 1.2s;text-align:center;padding:0 20px}
+#cineCaption.show{opacity:1}
+.cc-big{font-family:var(--f-display);font-size:clamp(24px,3.6vw,42px);font-weight:700;letter-spacing:.24em}
+.cc-small{font-size:12px;letter-spacing:.5em;color:var(--gold);text-transform:uppercase}
+#cineSub{position:absolute;left:0;right:0;bottom:calc(11vh + 26px);text-align:center;opacity:0;transition:opacity .4s;padding:0 24px}
+#cineSub.show{opacity:1}
+.cs-who{font-size:10px;letter-spacing:.4em;color:var(--red-hi);margin-bottom:8px;text-transform:uppercase}
+.cs-text{font-family:var(--f-display);font-size:clamp(17px,2.1vw,24px);line-height:1.6;text-shadow:0 2px 12px #000;max-width:900px;margin:0 auto}
+#cineTitle{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;opacity:0;pointer-events:none;text-align:center}
+#cineTitle.show{animation:titleCard 4.6s ease forwards}
+.ct-num{font-size:12px;letter-spacing:.6em;color:var(--gold);padding-left:.6em}
+.ct-jp{font-family:var(--f-display);color:var(--red-hi);font-size:18px;letter-spacing:.6em;margin-top:16px;padding-left:.6em}
+.ct-name{font-family:var(--f-display);font-size:clamp(30px,5vw,64px);font-weight:800;letter-spacing:.16em;margin:8px 0 14px;text-shadow:0 4px 30px #000}
+.ct-brush{height:3px;width:0;background:linear-gradient(90deg,transparent,var(--red-hi) 20%,var(--red) 80%,transparent)}
+#cineTitle.show .ct-brush{animation:brush 1.4s .4s cubic-bezier(.6,0,.2,1) forwards}
+#cineSkip{position:absolute;right:20px;bottom:calc(11vh + 10px);background:none;border:0;color:#666;font-size:10px;letter-spacing:.24em;pointer-events:auto;opacity:0;transition:opacity .5s}
+#cine.on #cineSkip{opacity:1}

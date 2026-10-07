@@ -1,0 +1,83 @@
+/* Generic overlay panels: pause, settings, saves, missions, credits, puzzle, results */
+#panels{position:absolute;inset:0;z-index:50;pointer-events:none}
+.pw{position:absolute;inset:0;background:rgba(4,4,4,.62);backdrop-filter:blur(3px);-webkit-backdrop-filter:blur(3px);display:flex;align-items:center;justify-content:center;pointer-events:auto;animation:fadeIn .2s ease;padding:16px}
+.pw.menu-layer{z-index:90;position:fixed}
+.panel{background:var(--glass-strong);border:1px solid #2c2c2c;box-shadow:0 30px 80px rgba(0,0,0,.6);width:min(960px,100%);max-height:min(88vh,760px);display:flex;flex-direction:column;animation:panelIn .25s ease;position:relative}
+.panel.sm{width:min(440px,100%)}.panel.md{width:min(640px,100%)}
+.panel::before{content:"";position:absolute;left:0;right:0;top:0;height:1px;background:linear-gradient(90deg,transparent,var(--gold),transparent);opacity:.6}
+.ph{display:flex;align-items:center;gap:14px;padding:18px 22px 14px;border-bottom:1px solid #222}
+.ph h2{margin:0;font-family:var(--f-display);font-size:20px;letter-spacing:.2em;font-weight:700}
+.ph .jp{font-family:var(--f-display);color:var(--red-hi);font-size:14px;letter-spacing:.3em}
+.ph .x{margin-left:auto;background:none;border:1px solid #333;width:32px;height:32px;color:var(--light);font-size:16px}
+.ph .x:hover{border-color:var(--red-hi);color:var(--white)}
+.pb{padding:18px 22px;overflow:auto;min-height:0}
+.btn{background:#1a1a1a;border:1px solid #3a3a3a;padding:9px 16px;font-size:12px;letter-spacing:.16em;text-transform:uppercase;transition:all .15s;color:var(--white)}
+.btn:hover:not([disabled]){border-color:var(--gold);background:#222}
+.btn.red{border-color:var(--red);background:rgba(139,30,30,.25)}.btn.red:hover:not([disabled]){background:rgba(139,30,30,.5);border-color:var(--red-hi)}
+.btn.gold{border-color:var(--gold-dim);color:var(--gold)}
+.btn[disabled]{opacity:.35;cursor:not-allowed}
+.btn-row{display:flex;gap:8px;flex-wrap:wrap}
+/* Pause */
+.pause-list{display:flex;flex-direction:column;gap:2px;padding:10px 0}
+.pause-list button{background:none;border:0;text-align:left;padding:12px 26px;font-family:var(--f-display);font-size:17px;letter-spacing:.24em;color:var(--light);border-left:2px solid transparent;transition:all .15s}
+.pause-list button:hover{color:var(--white);border-left-color:var(--red-hi);background:rgba(255,255,255,.03);padding-left:34px}
+.pause-meta{padding:10px 26px 18px;font-size:11px;color:#777;letter-spacing:.1em;border-top:1px solid #222}
+/* Settings */
+.set-row{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:11px 0;border-bottom:1px solid #1e1e1e;font-size:13px}
+.set-row label{color:var(--light)}
+.set-row input[type=range]{width:180px;accent-color:var(--red-hi)}
+.seg{display:flex;border:1px solid #333}
+.seg button{background:none;border:0;padding:6px 11px;font-size:11px;letter-spacing:.1em;color:#999}
+.seg button.on{background:var(--red);color:var(--white)}
+/* Save slots */
+.slots{display:flex;flex-direction:column;gap:8px}
+.slotc{display:flex;align-items:center;gap:14px;border:1px solid #2a2a2a;padding:12px 14px;background:#121212;transition:border-color .15s}
+.slotc:hover{border-color:#555}
+.slotc .sn{font-family:var(--f-display);font-size:20px;color:var(--gold);width:34px;text-align:center}
+.slotc .si{flex:1;min-width:0}
+.slotc .si b{display:block;font-size:13px;letter-spacing:.05em}
+.slotc .si span{font-size:11px;color:#888}
+/* Missions */
+.mis-grid{display:grid;grid-template-columns:260px 1fr;gap:20px}
+.mis-list{display:flex;flex-direction:column;gap:2px}
+.mis-item{padding:9px 12px;border-left:2px solid #2a2a2a;font-size:12.5px;color:#888;display:flex;gap:10px;background:none;border-top:0;border-right:0;border-bottom:0;text-align:left}
+.mis-item .n{color:#555;font-variant-numeric:tabular-nums;width:20px}
+.mis-item.done{color:#aaa}.mis-item.done .n{color:var(--red-hi)}
+.mis-item.cur{color:var(--white);border-left-color:var(--gold);background:rgba(201,162,39,.06)}
+.mis-item.sel{background:rgba(255,255,255,.05)}
+.mis-item.locked{opacity:.45}
+.mis-detail h3{font-family:var(--f-display);font-size:24px;margin:0 0 4px;letter-spacing:.06em}
+.mis-detail .jp{color:var(--red-hi);font-family:var(--f-display);letter-spacing:.3em;font-size:13px}
+.mis-detail p{color:var(--light);font-size:13px;line-height:1.7;max-width:60ch}
+.mis-detail ul{list-style:none;padding:0;margin:14px 0;display:flex;flex-direction:column;gap:6px;font-size:13px}
+.mis-detail li{display:flex;gap:10px}
+.mis-detail li i{font-style:normal;width:14px;color:var(--gold)}
+.mis-detail li.done{color:#777;text-decoration:line-through}
+.sq-title{font-size:10px;letter-spacing:.3em;color:var(--gold);margin:20px 0 8px}
+.sq{border:1px solid #242424;padding:10px 12px;margin-bottom:6px;font-size:12.5px}
+.sq b{display:block;margin-bottom:3px}.sq span{color:#888}
+.sq.done{opacity:.5}
+/* Credits */
+.credits{text-align:center;line-height:2;color:var(--light);font-size:13px}
+.credits h4{font-family:var(--f-display);color:var(--gold);letter-spacing:.3em;margin:18px 0 2px;font-size:12px}
+/* Center-screen results / death */
+.result{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;background:radial-gradient(ellipse at center,rgba(0,0,0,.55),rgba(0,0,0,.92));pointer-events:auto;animation:fadeIn .6s ease;text-align:center;padding:20px}
+.result .r-k{font-size:11px;letter-spacing:.5em;color:var(--gold)}
+.result .r-t{font-family:var(--f-display);font-size:clamp(30px,5vw,56px);font-weight:800;letter-spacing:.18em}
+.result .r-t.red{color:var(--red-hi)}
+.result .r-line{width:0;height:1px;background:var(--red-hi);animation:lineGrow 1s .3s ease forwards}
+.result .r-list{display:flex;flex-direction:column;gap:6px;font-size:13px;color:var(--light);min-height:20px}
+.result .r-list div{animation:fadeUp .5s ease both}
+/* Puzzle overlay */
+.dials{display:flex;gap:18px;justify-content:center;padding:20px 0}
+.dial{display:flex;flex-direction:column;align-items:center;gap:8px}
+.dial button.arr{background:none;border:1px solid #333;width:44px;height:28px;color:var(--light)}
+.dial button.arr:hover{border-color:var(--gold)}
+.dial .face{width:88px;height:88px;border:1px solid #4a4a4a;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:var(--f-display);font-size:42px;background:radial-gradient(circle,#232323,#0e0e0e);box-shadow:inset 0 0 20px #000;transition:transform .25s}
+.dial .face.spin{transform:rotate(60deg)}
+.dial small{font-size:10px;color:#888;letter-spacing:.15em}
+.puz-hint{text-align:center;color:#999;font-size:12.5px;line-height:1.7}
+.puz-hint em{color:var(--gold);font-style:normal}
+.panel.shake{animation:shake .45s}
+.panel.solved .face{border-color:var(--gold);box-shadow:0 0 20px rgba(201,162,39,.5),inset 0 0 20px #000;color:var(--gold)}
+.lore-card{border:1px solid #2a2a2a;padding:18px 20px;line-height:1.8;font-family:var(--f-display);font-size:15px;color:#ddd;background:linear-gradient(180deg,#141210,#0e0d0b)}

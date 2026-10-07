@@ -1,0 +1,16 @@
+#menu{position:absolute;inset:0;z-index:80;display:flex;align-items:center;background:#06070a}
+#menuCanvas{position:absolute;inset:0;width:100%;height:100%}
+.menu-inner{position:relative;padding:0 8vw;display:flex;flex-direction:column;gap:42px;max-width:720px}
+.menu-title .mt-jp{font-family:var(--f-display);color:var(--red-hi);font-size:20px;letter-spacing:.6em;opacity:.85}
+.menu-title h1{font-family:var(--f-display);font-weight:800;font-size:clamp(38px,6.4vw,84px);line-height:.95;margin:.25em 0 .2em;letter-spacing:.04em;
+  text-shadow:0 4px 40px rgba(0,0,0,.8)}
+.menu-title h1 span{display:block;font-size:.32em;letter-spacing:.9em;color:var(--gold);font-weight:500;margin:.35em 0 .25em}
+.menu-title .mt-sub{color:var(--light);letter-spacing:.32em;font-size:12px;text-transform:uppercase}
+.menu-nav{display:flex;flex-direction:column;gap:6px;align-items:flex-start}
+.menu-nav button{background:none;border:0;font-family:var(--f-display);font-size:19px;letter-spacing:.28em;color:var(--light);padding:8px 0 8px 22px;position:relative;transition:color .2s, padding .25s}
+.menu-nav button::before{content:"";position:absolute;left:0;top:50%;width:10px;height:1px;background:var(--line);transition:width .25s,background .25s}
+.menu-nav button:hover,.menu-nav button:focus-visible{color:var(--white);padding-left:36px;outline:0}
+.menu-nav button:hover::before,.menu-nav button:focus-visible::before{width:26px;background:var(--red-hi)}
+.menu-nav button[disabled]{opacity:.3;pointer-events:none}
+.menu-foot{font-size:11px;color:#777;letter-spacing:.12em}
+@media (max-width:640px){.menu-inner{padding:0 24px;gap:28px}.menu-nav button{font-size:16px}}
